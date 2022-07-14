@@ -1,5 +1,9 @@
 package com.codedifferently.problem01;
 
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class Solution {
     /**
      * You will be given an array of numbers, search the array and return the longest
@@ -11,6 +15,27 @@ public class Solution {
      * @return
      */
     public String findLongestConsecutiveSet(Integer[] allNumbers){
-        return null;
+        Set<Integer> sortedNums = new TreeSet<>(List.of(allNumbers));
+        int longestStreak = 0;
+        String currentLongest = "";
+        for(int num : sortedNums){
+            if(!sortedNums.contains(num-1)){
+                int currentNum = num;
+                int streak = 1;
+                String currentArray = "{"+currentNum;
+                while(sortedNums.contains(currentNum+1)){
+                    currentNum+=1;
+                    currentArray += " " + currentNum;
+                    streak +=1;
+                }
+                if(longestStreak < streak){
+                    longestStreak = streak;
+                    currentLongest = currentArray;
+                }
+
+            }
+        }
+
+        return "Longest Set: " + currentLongest+"}";
     }
 }
